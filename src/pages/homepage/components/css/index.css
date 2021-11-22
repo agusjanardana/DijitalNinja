@@ -1,0 +1,80 @@
+.navbar-wrapper-title {
+    font-family: 'Poppins';
+    font-weight: bold;
+    z-index: 1;
+}
+.nav-item-ab {
+    z-index: 1;
+}
+.page-wrapper {
+    width: 100%;
+    top: 0;
+    z-index: 0;
+}
+
+.background-wrapper {
+    position: absolute;
+    top: 0;
+}
+.background-wrapper > img {
+    width: 204.9vh;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar-toggler {
+    z-index: 1;
+}
+
+.navbar-wrapper-title {
+    color: white;
+}
+
+.nav-item > a {
+    color: white !important;
+    font-family: 'Poppins';
+    font-weight: bold;
+}
+.content-wrapper {
+    z-index: 1;
+    width: 100%;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.left-content {
+    margin-left: 5rem;
+    margin-top: 5rem;
+    margin-right: 8rem;
+}
+
+.left-content > h1 {
+    color: white !important;
+    font-family: 'Poppins';
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.content-text > p {
+    color: white;
+    font-family: 'Poppins';
+}
+
+.left-content > button {
+    color: #543884;
+    background-color: white;
+    font-family: 'Poppins';
+    font-weight: bold;
+    border-radius: 8px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+}
+
+.left-content > button:hover {
+    background-color: #a7a7a7;
+}
