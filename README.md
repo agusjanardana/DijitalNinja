@@ -1,3 +1,10 @@
+# Small Project for Altera Academy - Kampus Merdeka.
+Tools : 
+ - Hasura for graphql.
+ - Apollo client.
+ - Nodemailer.
+ - Bootstrap ReactJS.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
