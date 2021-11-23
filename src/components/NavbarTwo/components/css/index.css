@@ -1,0 +1,40 @@
+.test {
+    margin-left: 100%;
+}
+
+.text-link.nav-link {
+    color: black !important;
+}
+
+.last-link {
+    width: 100%;
+    color: #262254;
+}
+
+.navbar-two-wrapper-title {
+    color: #262254;
+    font-family: 'Poppins';
+    font-weight: bold;
+}
+
+.nav-link > button {
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 5px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    color: white;
+    background-color: #262254;
+}
+
+.nav-link > button:hover {
+    color: #a7a7a7;
+}
+
+.nav-two-wrapper {
+    margin-right: 5rem;
+}

@@ -1,0 +1,114 @@
+.content-wrapper-pdp {
+    display: flex;
+}
+
+.description {
+    font-family: 'Poppins';
+    padding-top: 2.1rem;
+    padding-left: 3rem;
+    padding-bottom: 3rem;
+    width: 630px;
+    margin-left: 4rem;
+    border: 1px solid #543884;
+    margin-top: 2.4rem;
+}
+
+.description-title {
+    color: #262254;
+}
+
+.action-button {
+    margin-top: 2rem;
+    margin-left: 4rem;
+    padding-left: 15rem;
+    padding-right: 15rem;
+}
+.action-button > button {
+    outline: none;
+    border: none;
+}
+
+.action-button > button:nth-child(1) {
+    background-color: #543884;
+
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: white;
+    font-family: 'Poppins';
+}
+
+.action-button > button:nth-child(2) {
+    background-color: #9a77cf;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: white;
+    font-family: 'Poppins';
+}
+.first-content-image {
+    height: 500px;
+    width: 600px;
+}
+
+.first-content-image > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.userProfileImage {
+    margin-top: 1rem;
+    height: 75px;
+    width: 75px;
+}
+
+.userProfileImage > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.userName {
+    margin-top: 35px;
+    margin-left: 15px;
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: #262254;
+    font-weight: bold;
+}
+
+.second-content {
+    font-family: 'Poppins';
+    padding-top: 2.1rem;
+    padding-bottom: 3rem;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #543884;
+    margin-top: 2.4rem;
+    margin-bottom: 2rem;
+}
+
+.second-content-wrapper {
+    padding-left: 25px;
+    padding-right: 25px;
+    word-wrap: break-word;
+}
+
+.third-content {
+    font-family: 'Poppins';
+    padding-top: 2.1rem;
+    padding-bottom: 3rem;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #543884;
+    margin-top: 2.4rem;
+    margin-bottom: 2rem;
+}
+
+.third-content-wrapper {
+    padding-left: 25px;
+    padding-right: 25px;
+    word-wrap: break-word;
+}
