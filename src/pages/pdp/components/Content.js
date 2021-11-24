@@ -3,6 +3,8 @@ import './css/index.css';
 import Detail from '../../../assets/detail.png';
 import Profile from '../../../assets/profile.jpg';
 import Rating from 'react-rating';
+import filledStar from '../../../assets/FilledStar.png';
+import ZonkStar from '../../../assets/ZonkStar.png';
 
 const Content = () => {
     return (
@@ -65,7 +67,40 @@ const Content = () => {
                                 </div>
                             </div>
                             <div className="third-content">
-                                <div className="third-content-wrapper"></div>
+                                <div className="third-content-wrapper">
+                                    <div className="star-review d-flex">
+                                        <p>
+                                            Reviews
+                                            <span className="star-rating">
+                                                <Rating
+                                                    fullSymbol={<img src={filledStar} />}
+                                                    emptySymbol={<img src={ZonkStar} />}
+                                                />
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="review-content">
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci auctor
+                                            augue interdum netus proin convallis mattis velit. Condimentum nisl vitae
+                                            feugiat volutpat in. Lacus risus malesuada eget tincidunt sagittis ut. Massa
+                                            lorem id interdum aliquam faucibus mi.
+                                        </p>
+                                    </div>
+                                    <div className="reviewer-detail d-flex">
+                                        <p>
+                                            Review By <span>Fisher </span>
+                                            <span>19 Jan, 1999</span>
+                                        </p>
+                                    </div>
+                                    <hr />
+                                </div>
+
+                                <div className="third-action-buttons">
+                                    <p>You're Reviewing : </p>
+                                    <p>I'LL MAKE GOOD PAINTING</p>
+                                    <button className="button-third">Make a Review</button>
+                                </div>
                             </div>
                         </div>
                         <div className="right-side ">

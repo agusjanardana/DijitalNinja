@@ -112,3 +112,23 @@
     padding-right: 25px;
     word-wrap: break-word;
 }
+
+.third-action-buttons {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.button-third {
+    border: none;
+    outline: none;
+    padding: 15px;
+    color: white;
+    font-family: 'Poppins';
+    background-color: #543884;
+    font-weight: bold;
+}
+
+.button-third:hover {
+    transition: all 0.5s ease-out;
+    background-color: #b3b3b3;
+}
