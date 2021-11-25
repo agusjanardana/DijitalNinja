@@ -1,0 +1,22 @@
+.paper-background-content > img {
+    background-size: cover;
+    height: 101vh;
+    width: 100%;
+}
+
+.paper-background-content > .card {
+}
+
+.paper-background-wrapper {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    background: rgb(238, 174, 202);
+    background: radial-gradient(circle, rgba(238, 174, 202, 0.6727065826330532) 1%, rgba(221, 213, 233, 1) 100%);
+}
