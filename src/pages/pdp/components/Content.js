@@ -61,7 +61,7 @@ const Content = () => {
                                             neque elementum vestibulum enim, elementum quisque. Arcu integer felis arcu
                                             imperdiet faucibus sollicitudin amet. Nisl purus consequat elementum eget
                                             semper dolor integer felis ultricies. Dignissim velit in maecenas venenatis
-                                            tincidunt eget eget facilisi in. Eros sed ullamcorper interdum{' '}
+                                            tincidunt eget eget facilisi in. Eros sed ullamcorper interdum
                                         </p>
                                     </div>
                                 </div>

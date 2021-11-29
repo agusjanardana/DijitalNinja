@@ -5,11 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import client from './apollo-client';
+import { ApolloProvider } from '@apollo/client';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+    <ApolloProvider client={client}>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </ApolloProvider>,
     document.getElementById('root')
 );
 

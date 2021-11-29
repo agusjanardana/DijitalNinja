@@ -1,0 +1,12 @@
+.drop-wrapper {
+    text-align: wrap;
+}
+
+.drop-wrapper > button {
+    outline: none;
+    border: none;
+    padding: 12px;
+    color: white;
+    background-color: #262254;
+    border-radius: 8px;
+}

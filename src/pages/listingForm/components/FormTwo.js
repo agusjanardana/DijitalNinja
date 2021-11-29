@@ -1,35 +1,54 @@
 import Paper from '../../../components/Paper/index';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextStep, previousStep } from '../../../store/formStepSlice';
+import { nextStep, previousStep, handleFormData } from '../../../store/formStepSlice';
+import { useState, useEffect } from 'react';
 
 const FormTwo = () => {
     const dispatch = useDispatch();
+    let formDatas = useSelector((state) => state.formStep.formValue);
+    const [input, setInput] = useState({
+        tell_your_self: '',
+    });
+
+    useEffect(() => {
+        if (formDatas != '') {
+            setInput({ ...formDatas });
+        }
+    }, []);
 
     const nextSubmit = (e) => {
         e.preventDefault();
         dispatch(nextStep());
+        dispatch(handleFormData(input));
     };
 
     const previousSubmit = (e) => {
         e.preventDefault();
         dispatch(previousStep());
     };
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        var key = e.target.name;
+        var value = e.target.value;
+        setInput({ ...input, [key]: value });
+    };
     return (
         <Paper className="rounded-3">
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address 22222</Form.Label>
-                    <Form.Control type="email" placeholder="Enter emailss" />
-                    <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
+                    <Form.Label>Tell about your self</Form.Label>
+                    <Form.Control
+                        as="textarea"
+                        rows={10}
+                        placeholder="tell about your self..."
+                        name="tell_your_self"
+                        onChange={handleChange}
+                        value={input.tell_your_self}
+                    />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+
                 <div className="d-flex flex-column col-lg-4 mx-auto">
                     <Button onClick={nextSubmit} type="submit">
                         Next

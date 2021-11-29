@@ -4,28 +4,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { nextStep, previousStep, handleFormData } from '../../../store/formStepSlice';
 import { useState, useEffect } from 'react';
 
-const FormOne = () => {
+const FormFour = () => {
     const dispatch = useDispatch();
     let formDatas = useSelector((state) => state.formStep.formValue);
-
     const [input, setInput] = useState({
-        full_name: '',
-        education: '',
-        email: '',
-        phone: '',
+        what_you_do: '',
+        pricing: '',
+        ETA: '',
+        short_description: '',
     });
-
-    useEffect(() => {
-        if (formDatas != '') {
-            setInput({ ...formDatas });
-        }
-    }, []);
 
     const nextSubmit = (e) => {
         e.preventDefault();
         dispatch(nextStep());
         dispatch(handleFormData(input));
     };
+
+    useEffect(() => {
+        if (formDatas != '') {
+            setInput({ ...formDatas });
+        }
+    }, []);
 
     const previousSubmit = (e) => {
         e.preventDefault();
@@ -38,48 +37,48 @@ const FormOne = () => {
         var value = e.target.value;
         setInput({ ...input, [key]: value });
     };
-
     return (
         <Paper className="rounded-3">
             <Form>
-                <Form.Group className="mb-3" controlId="formBasicFullname">
-                    <Form.Label>Full Name</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicDo">
+                    <Form.Label>What will you do?</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Your full name here..."
+                        placeholder="what you want to do..."
+                        name="what_you_do"
+                        value={input.what_you_do}
                         onChange={handleChange}
-                        name="full_name"
-                        value={input.full_name}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEducation">
-                    <Form.Label>Education</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicPricing">
+                    <Form.Label>Pricing</Form.Label>
                     <Form.Control
                         type="text"
-                        placeholder="Education Background...."
-                        name="education"
+                        placeholder="how much your cost"
+                        name="pricing"
+                        value={input.pricing}
                         onChange={handleChange}
-                        value={input.education}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>E-mail</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicETA">
+                    <Form.Label>ETA</Form.Label>
                     <Form.Control
                         type="email"
-                        placeholder="Your E-mail here..."
-                        name="email"
+                        placeholder="estimated time..."
+                        name="ETA"
+                        value={input.ETA}
                         onChange={handleChange}
-                        value={input.email}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEducation">
-                    <Form.Label>Phone</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicShort">
+                    <Form.Label>Short Description</Form.Label>
                     <Form.Control
-                        type="number"
-                        placeholder="Phone Number...."
-                        name="phone"
+                        as="textarea"
+                        rows={5}
+                        placeholder="short description about job..."
+                        name="short_description"
+                        value={input.short_description}
                         onChange={handleChange}
-                        value={input.phone}
                     />
                 </Form.Group>
                 <div className="d-flex flex-column col-lg-4 mx-auto">
@@ -95,4 +94,4 @@ const FormOne = () => {
     );
 };
 
-export default FormOne;
+export default FormFour;

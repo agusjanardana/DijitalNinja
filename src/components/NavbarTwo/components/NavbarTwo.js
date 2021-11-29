@@ -1,6 +1,6 @@
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import './css/index.css';
-
+import { Link } from 'react-router-dom';
 const NavbarTwos = () => {
     return (
         <Navbar className="navbar-two-wrapper" expand="lg">
@@ -29,7 +29,7 @@ const NavbarTwos = () => {
                     </Nav>
                     <Nav className="justify-content-end last-link">
                         <Nav.Link>
-                            <button>List Your Job</button>
+                            <Link to="/add-freelence">List Your Job</Link>
                         </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
