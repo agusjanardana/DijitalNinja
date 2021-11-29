@@ -12,13 +12,13 @@ const NavbarHomepage = () => {
                 <Navbar.Collapse className="justify-content-end nav-item-ab" id="basic-navbar-nav">
                     <Nav>
                         <Nav.Item>
-                            <Nav.Link href="/home">Home</Nav.Link>
+                            <Nav.Link href="/">Home</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="link-1">Freelencer List</Nav.Link>
+                            <Nav.Link href="/freelencer">Freelencer List</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="link-2">Listing Job</Nav.Link>
+                            <Nav.Link href="/add-freelence">Listing Job</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Navbar.Collapse>

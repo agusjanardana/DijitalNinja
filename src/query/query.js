@@ -18,3 +18,23 @@ export const postDataUser = gql`
         }
     }
 `;
+
+export const getProductById = gql`
+    query MyQuery($id: Int!) {
+        DijitalNinja_user(where: { id: { _eq: $id } }) {
+            education
+            email
+            full_name
+            eta
+            id
+            job
+            job_images
+            phone
+            pricing
+            profile_image
+            short_description
+            tell_yourself
+            createdAt
+        }
+    }
+`;

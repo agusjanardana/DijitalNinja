@@ -12,6 +12,8 @@ import FreelenceDetail from './pages/pdp/index';
 import ListingForm from './pages/listingForm/index';
 import ThankPage from './pages/thankspage/index';
 
+import Contact from './pages/contact/index';
+
 function App() {
     return (
         <Provider store={store}>
@@ -20,9 +22,10 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Homepage />}></Route>
                         <Route path="/freelencer" element={<Freelencer />}></Route>
-                        <Route path="/detail" element={<FreelenceDetail />}></Route>
+                        <Route path="/detail/:productId" element={<FreelenceDetail />}></Route>
                         <Route path="/add-freelence" element={<ListingForm />}></Route>
                         <Route path="/thank-page" element={<ThankPage />}></Route>
+                        <Route path="/contact/:id" element={<Contact />}></Route>
                     </Routes>
                 </BrowserRouter>
             </PersistGate>

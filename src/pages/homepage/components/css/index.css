@@ -33,7 +33,6 @@
 .nav-item > a {
     color: white !important;
     font-family: 'Poppins';
-    font-weight: bold;
 }
 .content-wrapper {
     z-index: 1;

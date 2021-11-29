@@ -1,12 +1,14 @@
 import Paper from '../../../components/Paper/index';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextStep, previousStep, handleFormData } from '../../../store/formStepSlice';
+import { nextStep, resetForm, handleFormData, resetStep } from '../../../store/formStepSlice';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const FormOne = () => {
     const dispatch = useDispatch();
     let formDatas = useSelector((state) => state.formStep.formValue);
+    const navigate = useNavigate();
 
     const [input, setInput] = useState({
         full_name: '',
@@ -28,8 +30,9 @@ const FormOne = () => {
     };
 
     const previousSubmit = (e) => {
-        e.preventDefault();
-        dispatch(previousStep());
+        dispatch(resetForm());
+        dispatch(resetStep());
+        navigate('/');
     };
 
     const handleChange = (e) => {
@@ -86,8 +89,8 @@ const FormOne = () => {
                     <Button onClick={nextSubmit} type="submit">
                         Next
                     </Button>
-                    <Button onClick={previousSubmit} className="mt-1" type="submit" disabled>
-                        Back
+                    <Button onClick={previousSubmit} className="mt-1" type="submit">
+                        Home
                     </Button>
                 </div>
             </Form>

@@ -5,13 +5,13 @@ const NavbarTwos = () => {
     return (
         <Navbar className="navbar-two-wrapper" expand="lg">
             <Container>
-                <Navbar.Brand className="navbar-two-wrapper-title" href="#home">
+                <Navbar.Brand className="navbar-two-wrapper-title" href="/">
                     DIJITALNINJA
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse className="justify-content-center nav-item-abc" id="basic-navbar-nav-two">
                     <Nav className="position-absolute nav-two-wrapper">
-                        <Nav.Link className="text-link" href="/home">
+                        <Nav.Link className="text-link" href="/">
                             Design
                         </Nav.Link>
                         <Nav.Link className="text-link" href="link-1">
@@ -28,9 +28,7 @@ const NavbarTwos = () => {
                         </Nav.Link>
                     </Nav>
                     <Nav className="justify-content-end last-link">
-                        <Nav.Link>
-                            <Link to="/add-freelence">List Your Job</Link>
-                        </Nav.Link>
+                        <Nav.Link href="/add-freelence">List Your Job</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

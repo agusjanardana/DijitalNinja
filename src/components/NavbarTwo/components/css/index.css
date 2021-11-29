@@ -38,3 +38,11 @@
 .nav-two-wrapper {
     margin-right: 5rem;
 }
+
+.last-link > a {
+    color: white !important;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #262254;
+    font-family: 'Poppins';
+}

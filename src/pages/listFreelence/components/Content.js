@@ -4,11 +4,15 @@ import Images from '../../../assets/VideoEditor.png';
 import { useQuery } from '@apollo/client';
 import { getListFreelence } from '../../../query/query';
 import Loader from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 const Content = () => {
     const { data, loading, error } = useQuery(getListFreelence);
     console.log(loading);
-
+    const navigate = useNavigate();
+    const handleSubmitNav = (id) => {
+        navigate(`/detail/${id}`);
+    };
     return (
         <Container className="mt-4">
             {loading ? (
@@ -26,7 +30,12 @@ const Content = () => {
                     </div>
                     <Row xs={1} lg={5} className="g-4 mt-2">
                         {data?.DijitalNinja_user.map((item) => (
-                            <Col key={item.id} id={item.id}>
+                            <Col
+                                key={item.id}
+                                id={item.id}
+                                onClick={() => handleSubmitNav(item.id)}
+                                style={{ cursor: 'pointer' }}
+                            >
                                 <Card>
                                     <Card.Img variant="top" src={item.job_images} />
                                     <Card.Body>
