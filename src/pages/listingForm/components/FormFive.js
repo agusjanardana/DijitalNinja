@@ -2,12 +2,11 @@ import Paper from '../../../components/Paper/index';
 import { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { nextStep, previousStep, handleFormJobImages, handleTokenDatas } from '../../../store/formStepSlice';
+import { previousStep, handleFormJobImages, handleTokenDatas } from '../../../store/formStepSlice';
 import Dropzone, { useDropzone } from 'react-dropzone';
 import dropZoneLine from '../../../assets/RectUpload.png';
 import { storage } from '../../../firebase';
 import { ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
-import { Redirect } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 // graphql things

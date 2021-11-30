@@ -13,6 +13,10 @@ import ListingForm from './pages/listingForm/index';
 import ThankPage from './pages/thankspage/index';
 
 import Contact from './pages/contact/index';
+import Review from './pages/review/index';
+import EditPage from './pages/modify/index';
+
+import TokenPage from './pages/tokenpage/index';
 
 function App() {
     return (
@@ -26,6 +30,9 @@ function App() {
                         <Route path="/add-freelence" element={<ListingForm />}></Route>
                         <Route path="/thank-page" element={<ThankPage />}></Route>
                         <Route path="/contact/:id" element={<Contact />}></Route>
+                        <Route path="/review/:id" element={<Review />}></Route>
+                        <Route path="/edit/:id/:token" element={<EditPage />}></Route>
+                        <Route path="/token/:id" element={<TokenPage />}></Route>
                     </Routes>
                 </BrowserRouter>
             </PersistGate>

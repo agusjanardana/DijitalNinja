@@ -1,0 +1,24 @@
+.unique-code-thanks > input {
+    width: 100%;
+    padding: 15px;
+}
+
+.action-buttom-thank > button {
+    outline: none;
+    border: none;
+}
+
+.action-buttom-thank > button:nth-child(1) {
+    background-color: #543884;
+    padding-top: 5px;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 5px;
+}
+.action-buttom-thank > button:nth-child(2) {
+    background-color: #bcacd4;
+    padding-top: 5px;
+    color: white;
+    border-radius: 5px;
+    padding-bottom: 5px;
+}

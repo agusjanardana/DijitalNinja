@@ -17,15 +17,16 @@ const Content = () => {
         variables: { id: productId },
     });
 
-    console.log(!data);
-
     const navigate = useNavigate();
 
     const contactHandle = (id) => {
         navigate(`/contact/${id}`);
     };
 
-    console.log();
+    const handleClickEdit = () => {
+        navigate(`/token/${data?.DijitalNinja_user[0].id}`);
+    };
+
     return (
         <Container>
             <Row>
@@ -75,7 +76,7 @@ const Content = () => {
                                         <div className="first-info-pdp-two justify-content-between d-flex">
                                             <div className="email">
                                                 <p>Email</p>
-                                                <strong>b{data?.DijitalNinja_user[0].email}</strong>
+                                                <strong>{data?.DijitalNinja_user[0].email}</strong>
                                             </div>
                                             <div className="education">
                                                 <p>Education</p>
@@ -95,6 +96,8 @@ const Content = () => {
                                                 Reviews
                                                 <span className="star-rating">
                                                     <Rating
+                                                        initialRating={3}
+                                                        readonly
                                                         fullSymbol={<img src={filledStar} />}
                                                         emptySymbol={<img src={ZonkStar} />}
                                                     />
@@ -145,7 +148,7 @@ const Content = () => {
                                         <button onClick={() => contactHandle(data?.DijitalNinja_user[0].id)}>
                                             Contact Me
                                         </button>
-                                        <button>Is This post is yours?</button>
+                                        <button onClick={handleClickEdit}>Is This post is yours?</button>
                                     </div>
                                 </div>
                             </div>

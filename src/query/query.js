@@ -38,3 +38,50 @@ export const getProductById = gql`
         }
     }
 `;
+
+export const postDataReview = gql`
+    mutation MyMutation($object: DijitalNinja_review_insert_input!) {
+        insert_DijitalNinja_review_one(object: $object) {
+            user_id
+        }
+    }
+`;
+
+export const CheckTokenValid = gql`
+    query MyQuery($id: Int!, $token: String = "") {
+        DijitalNinja_user(where: { id: { _eq: $id }, _and: { token: { _eq: $token } } }) {
+            id
+            token
+        }
+    }
+`;
+
+export const EditData = gql`
+    mutation MyMutation($id: Int!, $token: String!, $short_description: String!, $job: String!, $pricing: Int!) {
+        update_DijitalNinja_user(
+            where: { id: { _eq: $id }, _and: { token: { _eq: $token } } }
+            _set: { short_description: $short_description, job: $job, pricing: $pricing }
+        ) {
+            returning {
+                id
+                full_name
+                email
+                createdAt
+            }
+        }
+    }
+`;
+
+export const getReview = gql`
+    query MyQuery($id: Int!) {
+        DijitalNinja_user(where: { id: { _eq: $id } }) {
+            reviews {
+                id
+                rating
+                review_message
+                reviewer_name
+                user_id
+            }
+        }
+    }
+`;
