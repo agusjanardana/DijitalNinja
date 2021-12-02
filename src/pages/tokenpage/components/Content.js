@@ -12,7 +12,6 @@ import { useParams } from 'react-router-dom';
 
 const Content = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { id } = useParams();
 
     const [tokenValue, setTokenValue] = useState('');

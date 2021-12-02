@@ -6,7 +6,7 @@ import Rating from 'react-rating';
 import filledStar from '../../../assets/FilledStar.png';
 import ZonkStar from '../../../assets/ZonkStar.png';
 import { useParams } from 'react-router-dom';
-import { getProductById } from '../../../query/query';
+import { getProductById, getReview } from '../../../query/query';
 import { useQuery } from '@apollo/client';
 import Loader from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,9 @@ const Content = () => {
         variables: { id: productId },
     });
 
+    console.log();
+
+    const { data: dataReview, loading: loadingReview } = useQuery(getReview, { variables: { id: productId } });
     const navigate = useNavigate();
 
     const contactHandle = (id) => {
@@ -25,6 +28,10 @@ const Content = () => {
 
     const handleClickEdit = () => {
         navigate(`/token/${data?.DijitalNinja_user[0].id}`);
+    };
+
+    const handleReview = () => {
+        navigate(`/review/${productId}`);
     };
 
     return (
@@ -39,8 +46,18 @@ const Content = () => {
                             width={100}
                             className="position-absolute top-50 start-50 translate-middle"
                         />
-                    ) : !data ? (
-                        <p>NOT FOUND</p>
+                    ) : data?.DijitalNinja_user.length == 0 ? (
+                        <p>
+                            NOT FOUND
+                            {
+                                (setTimeout(() => {
+                                    {
+                                        navigate(`/freelencer`);
+                                    }
+                                }),
+                                3000)
+                            }
+                        </p>
                     ) : (
                         <section className="content-wrapper-pdp">
                             <div className="left-side">
@@ -91,40 +108,47 @@ const Content = () => {
                                 </div>
                                 <div className="third-content">
                                     <div className="third-content-wrapper">
-                                        <div className="star-review d-flex">
-                                            <p>
-                                                Reviews
-                                                <span className="star-rating">
-                                                    <Rating
-                                                        initialRating={3}
-                                                        readonly
-                                                        fullSymbol={<img src={filledStar} />}
-                                                        emptySymbol={<img src={ZonkStar} />}
-                                                    />
-                                                </span>
-                                            </p>
-                                        </div>
-                                        <div className="review-content">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In orci auctor
-                                                augue interdum netus proin convallis mattis velit. Condimentum nisl
-                                                vitae feugiat volutpat in. Lacus risus malesuada eget tincidunt sagittis
-                                                ut. Massa lorem id interdum aliquam faucibus mi.
-                                            </p>
-                                        </div>
-                                        <div className="reviewer-detail d-flex">
-                                            <p>
-                                                Review By <span>Fisher </span>
-                                                <span>19 Jan, 1999</span>
-                                            </p>
-                                        </div>
-                                        <hr />
+                                        {dataReview?.DijitalNinja_user[0].reviews.length > 0 ? (
+                                            <div>
+                                                {dataReview?.DijitalNinja_user[0].reviews.map((item, index) => (
+                                                    <div key={index}>
+                                                        <div className="star-review d-flex">
+                                                            <p>
+                                                                Reviews
+                                                                <span className="star-rating">
+                                                                    <Rating
+                                                                        initialRating={item.rating}
+                                                                        readonly
+                                                                        fullSymbol={<img src={filledStar} />}
+                                                                        emptySymbol={<img src={ZonkStar} />}
+                                                                    />
+                                                                </span>
+                                                            </p>
+                                                        </div>
+                                                        <div className="review-content">
+                                                            <p>{item.review_message}</p>
+                                                        </div>
+                                                        <div className="reviewer-detail d-flex">
+                                                            <p>
+                                                                Review By <span>{item.reviewer_name} </span>
+                                                                <span>{item.createdAt}</span>
+                                                            </p>
+                                                        </div>
+                                                        <hr />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <strong>NO REVIEW</strong>
+                                        )}
                                     </div>
 
                                     <div className="third-action-buttons">
                                         <p>You're Reviewing : </p>
                                         <p>{data?.DijitalNinja_user[0].job}</p>
-                                        <button className="button-third">Make a Review</button>
+                                        <button onClick={handleReview} className="button-third">
+                                            Make a Review
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -135,14 +159,13 @@ const Content = () => {
                                             {data?.DijitalNinja_user[0].job} -{' '}
                                             <span>{data?.DijitalNinja_user[0].full_name}</span>
                                         </h3>
-                                        <p>{data?.DijitalNinja_user[0].short_description}</p>
-                                        <p>
-                                            START FROM <span>{data?.DijitalNinja_user[0].pricing}</span>
-                                        </p>
-                                        <p>ETA</p>
-                                        <p>
-                                            <span>{data?.DijitalNinja_user[0].eta}</span>Days
-                                        </p>
+                                        <p className="short-desc">{data?.DijitalNinja_user[0].short_description}</p>
+                                        <strong>START FROM</strong>
+                                        <span className="pricing-span"> ${data?.DijitalNinja_user[0].pricing}</span>
+                                        <div classBane="eta-day-desc d-flex flex-column">
+                                            <p className="eta-desc">ETA</p>
+                                            <span className="day-desc">{data?.DijitalNinja_user[0].eta} Days</span>
+                                        </div>
                                     </div>
                                     <div className="action-button d-flex flex-column ">
                                         <button onClick={() => contactHandle(data?.DijitalNinja_user[0].id)}>

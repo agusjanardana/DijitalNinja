@@ -3,17 +3,28 @@ import './css/content.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetStep, resetForm } from '../../../store/formStepSlice';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Content = () => {
     const dispatch = useDispatch();
     const [tokenValue, setTokenValue] = useState('');
     let formDatas = useSelector((state) => state.formStep.formValue);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(resetStep());
         setTokenValue(formDatas.token);
         dispatch(resetForm());
     }, []);
+
+    const handleHome = () => {
+        navigate(`/`);
+    };
+
+    const handleMarketplace = () => {
+        navigate(`/freelencer`);
+    };
 
     return (
         <Container>
@@ -26,8 +37,10 @@ const Content = () => {
                     <input placeholder="" value={tokenValue} disabled />
                 </div>
                 <div className="action-buttom-thank d-flex flex-column col-lg-8 mx-auto mt-4">
-                    <button>Home</button>
-                    <button className="mt-2">Go To Marketplace</button>
+                    <button onClick={handleHome}>Home</button>
+                    <button onClick={handleMarketplace} className="mt-2">
+                        Go To Marketplace
+                    </button>
                 </div>
             </div>
         </Container>

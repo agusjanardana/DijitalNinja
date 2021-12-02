@@ -16,8 +16,12 @@ import { useMutation } from '@apollo/client';
 // token things
 import TokenGenerator from 'uuid-token-generator';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 const FormFive = () => {
     let navigate = useNavigate();
+    const [viewError, setError] = useState(false);
+    const [finishUpload, setFinishUpload] = useState(true);
 
     const [imagePreviewJob, setImagePreviewJob] = useState({ files: '' });
     const [progress, setProgress] = useState(0);
@@ -32,6 +36,10 @@ const FormFive = () => {
     const token = tokgen.generate();
 
     const submitEvent = (e) => {
+        if (imagePreviewJob.files == '') {
+            setError(true);
+            return false;
+        }
         e.preventDefault();
         dispatch(handleTokenDatas(token));
         inputDataList({
@@ -52,6 +60,7 @@ const FormFive = () => {
                 },
             },
         }).then(() => {
+            setError(false);
             navigate(`/thank-page`);
         });
     };
@@ -66,6 +75,7 @@ const FormFive = () => {
     const onDrop = (files) => {
         const storageRef = ref(storage, `images/${files[0]?.name}`);
         const uploadTask = uploadBytesResumable(storageRef, files[0]);
+        setError(false);
 
         uploadTask.on(
             'state_changed',
@@ -76,7 +86,9 @@ const FormFive = () => {
             (error) => console.log(error),
             () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log('test upload job', downloadURL);
                     dispatch(handleFormJobImages(downloadURL));
+                    setFinishUpload(false);
                 });
             }
         );
@@ -94,62 +106,155 @@ const FormFive = () => {
     });
 
     const files = <li key={imagePreviewJob[0]?.name}>{imagePreviewJob[0]?.name}</li>;
+    const customId = 'no-duplicate';
 
+    toast.error('Ada field yang kosong', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        toastId: customId,
+    });
     return (
-        <Paper className="rounded-3">
-            <Form>
-                <Form.Group className="mb-3" controlId="formBasicFullname">
-                    <Form.Label>UPLOAD YOUR JOB IMAGES</Form.Label>
-                    <Dropzone onDrop={onDrop} accept="image/*">
-                        {({ getRootProps, getInputProps }) => (
-                            <section>
-                                <div {...getRootProps()}>
-                                    <div className="justify-content-center">
-                                        <img style={{ marginLeft: '12%' }} src={dropZoneLine} />
-                                        <div className="drop-wrapper">
-                                            <small style={{ marginLeft: '28%' }}>Drag and Drop your Files or.</small>
-                                            <button type="button" onClick={open} style={{ marginLeft: '33%' }}>
-                                                Browse Your File
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <input {...getInputProps()} />
-                                </div>
-                                <aside>
-                                    {imagePreviewJob.length > 0 ? (
-                                        <div>
-                                            <h4>Files</h4>
-                                            <ul>
-                                                <li>
-                                                    {files} <span>{progress} %</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    ) : formDatas.job_images != '' ? (
-                                        <div>
-                                            <h4>Files</h4>
-                                            <ul>
-                                                <li>{formDatas.job_images}</li>
-                                            </ul>
-                                        </div>
-                                    ) : (
-                                        ''
+        <>
+            {viewError ? (
+                <div>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    <Paper className="rounded-3">
+                        <Form>
+                            <Form.Group className="mb-3" controlId="formBasicFullname">
+                                <Form.Label>UPLOAD YOUR JOB IMAGES</Form.Label>
+                                <Dropzone onDrop={onDrop} accept="image/*">
+                                    {({ getRootProps, getInputProps }) => (
+                                        <section>
+                                            <div {...getRootProps()}>
+                                                <div className="justify-content-center">
+                                                    <img style={{ marginLeft: '12%' }} src={dropZoneLine} />
+                                                    <div className="drop-wrapper">
+                                                        <small style={{ marginLeft: '28%' }}>
+                                                            Drag and Drop your Files or.
+                                                        </small>
+                                                        <button
+                                                            type="button"
+                                                            onClick={open}
+                                                            style={{ marginLeft: '33%' }}
+                                                        >
+                                                            Browse Your File
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <input {...getInputProps()} />
+                                            </div>
+                                            <aside>
+                                                {imagePreviewJob.length > 0 ? (
+                                                    <div>
+                                                        <h4>Files</h4>
+                                                        <ul>
+                                                            <li>
+                                                                {files} <span>{progress} %</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                ) : formDatas.job_images != '' ? (
+                                                    <div>
+                                                        <h4>Files</h4>
+                                                        <ul>
+                                                            <li>{formDatas.job_images}</li>
+                                                        </ul>
+                                                    </div>
+                                                ) : (
+                                                    ''
+                                                )}
+                                            </aside>
+                                        </section>
                                     )}
-                                </aside>
-                            </section>
-                        )}
-                    </Dropzone>
-                </Form.Group>
-                <div className="d-flex flex-column col-lg-4 mx-auto">
-                    <Button onClick={submitEvent} type="submit">
-                        Submit
-                    </Button>
-                    <Button onClick={previousSubmit} className="mt-1" type="submit">
-                        Back
-                    </Button>
+                                </Dropzone>
+                            </Form.Group>
+                            <div className="d-flex flex-column col-lg-4 mx-auto">
+                                <Button onClick={submitEvent} type="submit" disabled={finishUpload}>
+                                    Submit
+                                </Button>
+                                <Button onClick={previousSubmit} className="mt-1" type="submit">
+                                    Back
+                                </Button>
+                                <small>{loading ? 'Progress uploading to hashura' : ''}</small>
+                            </div>
+                        </Form>
+                    </Paper>
                 </div>
-            </Form>
-        </Paper>
+            ) : (
+                <Paper className="rounded-3">
+                    <Form>
+                        <Form.Group className="mb-3" controlId="formBasicFullname">
+                            <Form.Label>UPLOAD YOUR JOB IMAGES</Form.Label>
+                            <Dropzone onDrop={onDrop} accept="image/*">
+                                {({ getRootProps, getInputProps }) => (
+                                    <section>
+                                        <div {...getRootProps()}>
+                                            <div className="justify-content-center">
+                                                <img style={{ marginLeft: '12%' }} src={dropZoneLine} />
+                                                <div className="drop-wrapper">
+                                                    <small style={{ marginLeft: '28%' }}>
+                                                        Drag and Drop your Files or.
+                                                    </small>
+                                                    <button type="button" onClick={open} style={{ marginLeft: '33%' }}>
+                                                        Browse Your File
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <input {...getInputProps()} />
+                                        </div>
+                                        <aside>
+                                            {imagePreviewJob.length > 0 ? (
+                                                <div>
+                                                    <h4>Files</h4>
+                                                    <ul>
+                                                        <li>
+                                                            {files} <span>{progress} %</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            ) : formDatas.job_images != '' ? (
+                                                <div>
+                                                    <h4>Files</h4>
+                                                    <ul>
+                                                        <li>{formDatas.job_images}</li>
+                                                    </ul>
+                                                </div>
+                                            ) : (
+                                                ''
+                                            )}
+                                        </aside>
+                                    </section>
+                                )}
+                            </Dropzone>
+                        </Form.Group>
+                        <div className="d-flex flex-column col-lg-4 mx-auto">
+                            <Button onClick={submitEvent} type="submit" disabled={finishUpload}>
+                                Submit
+                            </Button>
+                            <Button onClick={previousSubmit} className="mt-1" type="submit">
+                                Back
+                            </Button>
+                            <small>{loading ? 'Progress uploading to hashura' : ''}</small>
+                        </div>
+                    </Form>
+                </Paper>
+            )}
+        </>
     );
 };
 

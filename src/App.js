@@ -18,6 +18,8 @@ import EditPage from './pages/modify/index';
 
 import TokenPage from './pages/tokenpage/index';
 
+import NotFound from './pages/notfound/index';
+
 function App() {
     return (
         <Provider store={store}>
@@ -33,6 +35,7 @@ function App() {
                         <Route path="/review/:id" element={<Review />}></Route>
                         <Route path="/edit/:id/:token" element={<EditPage />}></Route>
                         <Route path="/token/:id" element={<TokenPage />}></Route>
+                        <Route path="*" element={<NotFound />}></Route>
                     </Routes>
                 </BrowserRouter>
             </PersistGate>

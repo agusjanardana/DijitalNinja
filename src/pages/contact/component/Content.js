@@ -47,9 +47,15 @@ const ContactMe = () => {
         emailjs.send('service_dp4tpi5', 'template_3sinyhi', input, 'user_NXoyAAYmM8rsIqSMnfg7M').then(
             function (response) {
                 console.log('SUCCESS!', response.status, response.text);
+                if (response) {
+                    navigate(`/detail/${id}`);
+                }
             },
             function (error) {
                 console.log('FAILED...', error);
+                if (error) {
+                    navigate(`/detail/${id}`);
+                }
             }
         );
     };

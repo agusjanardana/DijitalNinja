@@ -81,7 +81,16 @@ export const getReview = gql`
                 review_message
                 reviewer_name
                 user_id
+                createdAt
             }
+        }
+    }
+`;
+
+export const deleteData = gql`
+    mutation MyMutation($id: Int!) {
+        delete_DijitalNinja_user_by_pk(id: $id) {
+            id
         }
     }
 `;

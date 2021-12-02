@@ -105,6 +105,7 @@
     border: 1px solid #543884;
     margin-top: 2.4rem;
     margin-bottom: 2rem;
+    overflow-y: auto;
 }
 
 .third-content-wrapper {
@@ -131,4 +132,35 @@
 .button-third:hover {
     transition: all 0.5s ease-out;
     background-color: #b3b3b3;
+}
+
+.description > strong {
+    font-family: 'Poppins';
+    font-size: 32px;
+}
+
+.description > .pricing-span {
+    font-family: 'Poppins';
+    font-size: 32px;
+}
+
+.description > p.short-desc {
+    font-size: 24px;
+    font-family: 'Poppins';
+}
+
+p.eta-desc {
+    font-size: 32px;
+    font-family: 'Poppins';
+    font-weight: bold;
+    margin: 0;
+}
+
+.eta-day-desc {
+    font-size: 32px;
+    font-family: 'Poppins';
+}
+
+span.day-desc {
+    font-size: 32px;
 }

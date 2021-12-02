@@ -8,6 +8,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import client from './apollo-client';
 import { ApolloProvider } from '@apollo/client';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
     <ApolloProvider client={client}>

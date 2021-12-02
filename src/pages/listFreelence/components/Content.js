@@ -28,24 +28,30 @@ const Content = () => {
                     <div class="freelence-title">
                         <h3>Freelence - List</h3>
                     </div>
-                    <Row xs={1} lg={5} className="g-4 mt-2">
-                        {data?.DijitalNinja_user.map((item) => (
-                            <Col
-                                key={item.id}
-                                id={item.id}
-                                onClick={() => handleSubmitNav(item.id)}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <Card>
-                                    <Card.Img variant="top" src={item.job_images} />
-                                    <Card.Body>
-                                        <Card.Title className="text-center card-title-custom">{item.job}</Card.Title>
-                                        <Card.Text>{item.short_description}</Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
+                    {data?.DijitalNinja_user.length > 0 ? (
+                        <Row xs={1} lg={5} className="g-4 mt-2">
+                            {data?.DijitalNinja_user.map((item) => (
+                                <Col
+                                    key={item.id}
+                                    id={item.id}
+                                    onClick={() => handleSubmitNav(item.id)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <Card>
+                                        <Card.Img variant="top" src={item.job_images} />
+                                        <Card.Body>
+                                            <Card.Title className="text-center card-title-custom">
+                                                {item.job}
+                                            </Card.Title>
+                                            <Card.Text>{item.short_description}</Card.Text>
+                                        </Card.Body>
+                                    </Card>
+                                </Col>
+                            ))}
+                        </Row>
+                    ) : (
+                        <p>NO DATA</p>
+                    )}
                 </div>
             )}
         </Container>

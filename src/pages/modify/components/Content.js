@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // graphql things
-import { EditData, CheckTokenValid } from '../../../query/query';
+import { EditData, CheckTokenValid, deleteData } from '../../../query/query';
 import { useMutation, useQuery } from '@apollo/client';
 
 import { useParams } from 'react-router-dom';
@@ -17,6 +17,7 @@ const FormEdit = () => {
     const { id, token } = useParams();
     const { data, loading, error } = useQuery(CheckTokenValid, { variables: { id: id, token: token } });
     const [inputData, { data: dataMut, loading: loadingMut }] = useMutation(EditData);
+    const [deleteDataForm, { data: deletedData, loading: deletedDataLoading }] = useMutation(deleteData);
 
     const [input, setInput] = useState({
         jobname: '',
@@ -39,7 +40,14 @@ const FormEdit = () => {
         });
     };
 
-    const previousSubmit = (e) => {};
+    const deleteJob = (e) => {
+        e.preventDefault();
+        deleteDataForm({
+            variables: { id: id },
+        }).then(() => {
+            navigate(`/freelencer`);
+        });
+    };
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -94,9 +102,14 @@ const FormEdit = () => {
                                     <Button onClick={handleSubmit} type="submit">
                                         Submit
                                     </Button>
-                                    <Button onClick={previousSubmit} className="mt-1" type="submit">
+                                    <Button onClick={deleteJob} className="mt-1" type="submit">
                                         Delete Job
                                     </Button>
+                                    {loadingMut
+                                        ? 'Proses edited data uploading to hashura'
+                                        : deletedDataLoading
+                                        ? 'proses deleted'
+                                        : ''}
                                 </div>
                             </Form>
                         </Paper>
